@@ -10,13 +10,14 @@ class GetLogService {
   GetLogService._();
 
   Logger logger = Logger(printer: PrettyPrinter());
-  void logAPICalls(Response response, APIRequestRepresentable request) {
+  void logAPICalls(Response response) {
     logger.i("""
-  REQUEST: ${request.method},
-  URL: ${request.url}
-  HEADERS: ${request.headers}
-  POST DATA: ${request.body}
-  REQUEST PARAMS: ${request.query},         
+  REQUEST: ${response.request!.method},
+  URL: ${response.request!.url}
+  HEADERS: ${response.request!.headers}
+  POST DATA: ${response.request!.bodyBytes}
+  REQUEST PARAMS: ${response.request},               
+
 
   RESPONSE STATUS CODE: ${response.statusCode},               
   RESPONSE: ${response.body},               
@@ -25,18 +26,23 @@ class GetLogService {
     // logger.d(response.status);
   }
 
-  logAPIErrors(Response response, APIRequestRepresentable request, String error) {
+  logAPIErrors(Response response, String error) {
     logger.e("""
-  REQUEST: ${request.method},
-  URL: ${request.url}
-  HEADERS: ${request.headers}
-  POST DATA: ${request.body}
-  REQUEST PARAMS: ${request.query},               
+  REQUEST: ${response.request!.method},
+  URL: ${response.request!.url}
+  HEADERS: ${response.request!.headers}
+  POST DATA: ${response.request!.bodyBytes}
+  REQUEST PARAMS: ${response.request},               
   --------------------------------
   RESPONSE STATUS CODE: ${response.statusCode},               
   RESPONSE: ${response.body},    
   [ERROR]: $error,   
               
   """);
+  }
+  logAPILocalData(String res){
+    logger.v(""" 
+    LOCAL STORAGE DATA: $res
+    """);
   }
 }

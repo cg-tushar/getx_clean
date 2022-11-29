@@ -5,7 +5,6 @@ import 'package:getx_clean/config.dart';
 
 import '../../database/storage.dart';
 
-
 class BaseApi extends GetConnect {
   final String url = "${ConfigEnvironments.getEnvironments()['url']}";
   // Handle get request//
@@ -18,8 +17,7 @@ class BaseApi extends GetConnect {
     final api = "$url$path";
     if (cache) {
       // get cache data
-      final localItem =
-          await LocalStorage.instance.readSecureData(getKey(path, query));
+      final localItem = await LocalStorage.instance.readSecureData(getKey(path, query));
       if (localItem != null) {
         // return the cache data
         yield Response(body: jsonDecode(localItem), statusCode: 200);
@@ -34,8 +32,7 @@ class BaseApi extends GetConnect {
     // check the response is ok and cache is enabled
     if (result.isOk && cache) {
       // cache data
-      LocalStorage.instance.writeSecureData(
-          StorageItem(getKey(path, query), jsonEncode(result.body)));
+      LocalStorage.instance.writeSecureData(StorageItem(getKey(path, query), jsonEncode(result.body)));
     }
     yield result;
     return;
@@ -51,8 +48,7 @@ class BaseApi extends GetConnect {
     final api = "$url$path";
     if (cache) {
       // get cache data
-      final localItem =
-          await LocalStorage.instance.readSecureData(getKey(path, query));
+      final localItem = await LocalStorage.instance.readSecureData(getKey(path, query));
       if (localItem != null) {
         // return the cache data
         yield Response(body: jsonDecode(localItem), statusCode: 200);
@@ -68,8 +64,7 @@ class BaseApi extends GetConnect {
     // check the response is ok and cache is enabled
     if (result.isOk && cache) {
       // cache data
-      LocalStorage.instance.writeSecureData(
-          StorageItem(getKey(path, query), jsonEncode(result.body)));
+      LocalStorage.instance.writeSecureData(StorageItem(getKey(path, query), jsonEncode(result.body)));
     }
     yield result;
     return;
@@ -85,8 +80,7 @@ class BaseApi extends GetConnect {
     final api = "$url$path";
     if (cache) {
       // get cache data
-      final localItem =
-          await LocalStorage.instance.readSecureData(getKey(path, query));
+      final localItem = await LocalStorage.instance.readSecureData(getKey(path, query));
       if (localItem != null) {
         // return the cache data
         yield Response(body: jsonDecode(localItem), statusCode: 200);
@@ -102,8 +96,7 @@ class BaseApi extends GetConnect {
     // check the response is ok and cache is enabled
     if (result.isOk && cache) {
       // cache data
-      LocalStorage.instance.writeSecureData(
-          StorageItem(getKey(path, query), jsonEncode(result.body)));
+      LocalStorage.instance.writeSecureData(StorageItem(getKey(path, query), jsonEncode(result.body)));
     }
     yield result;
     return;
@@ -119,8 +112,7 @@ class BaseApi extends GetConnect {
     final api = "$url$path";
     if (cache) {
       // get cache data
-      final localItem =
-          await LocalStorage.instance.readSecureData(getKey(path, query));
+      final localItem = await LocalStorage.instance.readSecureData(getKey(path, query));
       if (localItem != null) {
         // return the cache data
         yield Response(body: jsonDecode(localItem), statusCode: 200);
@@ -135,8 +127,7 @@ class BaseApi extends GetConnect {
     // check the response is ok and cache is enabled
     if (result.isOk && cache) {
       // cache data
-      LocalStorage.instance.writeSecureData(
-          StorageItem(getKey(path, query), jsonEncode(result.body)));
+      LocalStorage.instance.writeSecureData(StorageItem(getKey(path, query), jsonEncode(result.body)));
     }
     yield result;
     return;

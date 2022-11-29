@@ -1,13 +1,15 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:get/get_connect/connect.dart';
 
 import '../../../../infrastructure/dal/services/logger_service.dart';
-import '../api/api_endpoint.dart';
+import '../../database/get_key.dart';
+import '../../database/storage.dart';
+import '../endpoints/api_endpoint.dart';
 import 'api_exceptions.dart';
 import 'api_request_representable.dart';
-
 
 class APIProvider {
   static const requestTimeOut = Duration(seconds: 25);
@@ -16,17 +18,31 @@ class APIProvider {
   static final _singleton = APIProvider();
   static APIProvider get instance => _singleton;
 
-  Future<Response> request(APIRequestRepresentable request) async {
+  Stream<Response> request(APIRequestRepresentable request) async* {
     try {
+      if (request.cache) {
+        // get cache data
+        final localItem = await LocalStorage.instance.readSecureData(getKey(request.path, request.query));
+        if (localItem != null) {
+          // return the cache data
+          GetLogService.instance.logAPILocalData(localItem);
+          yield Response(body: jsonDecode(localItem), statusCode: 200);
+        }
+      }
       final response = await _client.request(
-        APIEndpoint.newsapi,
+        request.url,
         HTTPMethod.get.string,
         headers: request.headers,
         query: request.query,
         body: request.body,
       );
-      GetLogService.instance.logAPICalls(response, request);
-      return response;
+      GetLogService.instance.logAPICalls(response);
+      // >>>[ check the response is ok and cache is enabled ]
+      if (response.isOk) {
+        // >>>[ updating local storage with new data]
+        LocalStorage.instance.writeSecureData(StorageItem(getKey(request.path, request.query), jsonEncode(response.body)));
+      }
+      yield response;
     } on TimeoutException catch (_) {
       GetLogService.instance.logger.e(_);
 
@@ -35,25 +51,5 @@ class APIProvider {
       GetLogService.instance.logger.e('No Internet connection');
       throw FetchDataException('No Internet connection');
     }
-  }
-
-  dynamic _returnResponse(Response<dynamic> response) {
-    return response;
-    // switch (response.statusCode) {
-    //   case 200:
-    //     return response.body;
-    //   case 400:
-    //     throw BadRequestException(response.body.toString());
-    //   case 401:
-    //   case 403:
-    //     throw UnauthorisedException(response.body.toString());
-    //   case 404:
-    //     throw BadRequestException('Not found');
-    //   case 500:
-    //     throw FetchDataException('Internal Server Error');
-    //   default:
-    //     throw FetchDataException(
-    //         'Error occured while Communication with Server with StatusCode : ${response.statusCode}');
-    // }
   }
 }

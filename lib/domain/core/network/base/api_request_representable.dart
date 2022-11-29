@@ -19,11 +19,12 @@ extension HTTPMethodString on HTTPMethod {
 
 abstract class APIRequestRepresentable {
   String get url;
+  bool get cache;
   String get endpoint;
   String get path;
   HTTPMethod get method;
   Map<String, String>? get headers;
   Map<String, String>? get query;
   dynamic get body;
-  Future request();
+  Stream request();
 }
