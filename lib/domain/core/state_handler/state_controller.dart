@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Response;
 
-import '../api/response_handler.dart';
+import '../network/base/response_handler.dart';
+
 
 class SuperStateController<T> extends GetxController with StateMixin<NetworkResponse> {
   dynamic controller;

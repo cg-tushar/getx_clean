@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:getx_clean/domain/core/state_handler/state_controller.dart';
-import '../api/response_handler.dart';
+
+import '../network/base/response_handler.dart';
 
 class SuperStateBuilder<T extends SuperStateController> extends StatelessWidget {
   final Widget Function(NetworkResponse?) child;

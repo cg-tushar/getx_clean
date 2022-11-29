@@ -3,7 +3,7 @@ import 'package:get/get_connect/connect.dart';
 import 'package:getx_clean/domain/core/database/get_key.dart';
 import 'package:getx_clean/config.dart';
 
-import '../database/storage.dart';
+import '../../database/storage.dart';
 
 
 class BaseApi extends GetConnect {

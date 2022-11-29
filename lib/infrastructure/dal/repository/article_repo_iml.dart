@@ -1,5 +1,6 @@
-import '../../../domain/core/api/base_api.dart';
-import '../../../domain/core/api/response_handler.dart';
+
+import '../../../domain/core/network/base/base_api.dart';
+import '../../../domain/core/network/base/response_handler.dart';
 import '../../../domain/repositories/article_repository.dart';
 import '../daos/news_model.dart';
 

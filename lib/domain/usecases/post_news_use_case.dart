@@ -1,5 +1,5 @@
-import 'package:getx_clean/domain/core/api/response_handler.dart';
 import 'package:getx_clean/domain/core/usecases/pram_usecase.dart';
+import '../core/network/base/response_handler.dart';
 import '../repositories/article_repository.dart';
 
 class PostNewsUseCase extends ParamUseCase<NetworkResponse, PostDataUseCase> {

@@ -1,5 +1,5 @@
 
-import '../core/api/response_handler.dart';
+import '../core/network/base/response_handler.dart';
 
 abstract class ArticleRepository {
   Stream<NetworkResponse> fetchHeadline();

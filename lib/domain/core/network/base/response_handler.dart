@@ -1,7 +1,7 @@
 import 'package:get/get_connect.dart' as get_connect;
 import 'package:get/instance_manager.dart';
 
-import '../model/base_model.dart';
+import '../../model/base_model.dart';
 
 class NetworkResponseHandler<T extends BaseModel> {
   response(get_connect.Response response) {

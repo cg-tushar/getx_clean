@@ -1,4 +1,4 @@
-import '../core/api/response_handler.dart';
+import '../core/network/base/response_handler.dart';
 import '../core/usecases/no_param_usecase.dart';
 import '../repositories/article_repository.dart';
 
