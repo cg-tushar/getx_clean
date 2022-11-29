@@ -25,7 +25,7 @@ class APIProvider {
         final localItem = await LocalStorage.instance.readSecureData(getKey(request.path, request.query));
         if (localItem != null) {
           // return the cache data
-          GetLogService.instance.logAPILocalData(localItem);
+          GetLogService.instance.logAPILocalData(data:localItem,key:getKey(request.path, request.query));
           yield Response(body: jsonDecode(localItem), statusCode: 200);
         }
       }

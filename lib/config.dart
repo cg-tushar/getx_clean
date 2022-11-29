@@ -10,7 +10,7 @@ class ConfigEnvironments {
   static final List<Map<String, String>> _availableEnvironments = [
     {
       'env': Environments.LOCAL,
-      'url': 'https://newsapi.org/v2/',
+      'url': 'https://newsapi.org/v2',
     },
     {
       'env': Environments.DEV,

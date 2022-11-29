@@ -3,8 +3,6 @@ import 'package:logger/logger.dart';
 
 import '../../../domain/core/network/base/api_request_representable.dart';
 
-
-
 class GetLogService {
   static final instance = GetLogService._();
   GetLogService._();
@@ -40,9 +38,10 @@ class GetLogService {
               
   """);
   }
-  logAPILocalData(String res){
+
+  logAPILocalData({required String data, required String key}) {
     logger.v(""" 
-    LOCAL STORAGE DATA: $res
+    LOCAL STORAGE DATA: KEY::$key\n$data
     """);
   }
 }

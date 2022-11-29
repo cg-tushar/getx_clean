@@ -1,7 +1,6 @@
 
-import 'package:getx_clean/domain/core/network/api/article_api.dart';
+import 'package:getx_clean/infrastructure/dal/apis/article_api.dart';
 
-import '../../../domain/core/network/base/base_api.dart';
 import '../../../domain/core/network/base/response_handler.dart';
 import '../../../domain/repositories/article_repository.dart';
 import '../daos/news_model.dart';

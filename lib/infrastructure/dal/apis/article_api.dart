@@ -1,7 +1,7 @@
 import 'package:get/get_connect/http/src/response/response.dart';
 import 'package:getx_clean/domain/core/network/base/api_provider.dart';
-import '../base/api_request_representable.dart';
-import '../endpoints/api_endpoint.dart';
+import '../../../domain/core/network/base/api_request_representable.dart';
+import '../../../domain/core/network/endpoints/api_endpoint.dart';
 
 enum ArticleType { postData, fetchNews }
 
@@ -36,7 +36,7 @@ class ArticleAPI implements APIRequestRepresentable {
       case ArticleType.postData:
         return {"userId": userId.toString()};
       case ArticleType.fetchNews:
-        return null;
+        return {"country": "us", "category": "business", "apiKey": "d809d6a547734a67af23365ce5bc8c02"};
     }
   }
 
@@ -49,14 +49,14 @@ class ArticleAPI implements APIRequestRepresentable {
   String get path {
     switch (type) {
       case ArticleType.fetchNews:
-        return "/top-headlines?country=in&category=business&apiKey=d809d6a547734a67af23365ce5bc8c02";
+        return "/top-headlines";
       case ArticleType.postData:
         return "/top-headlines";
     }
   }
 
   @override
-  String get url => endpoint+path;
+  String get url => endpoint + path;
 
   @override
   bool get cache => true;
