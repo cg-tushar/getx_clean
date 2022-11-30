@@ -15,19 +15,19 @@ class BaseWidget extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Container(
-            padding: const EdgeInsets.all(8),
-            color: Colors.grey,
-            width: Get.width,
-            alignment: Alignment.centerRight,
-            child: Row(
-              children: const [
-                Icon(Icons.not_interested_rounded),
-                SizedBox(width: 8,),
-                Text("Offline"),
-              ],
-            ),
-          ),
+          // Container(
+          //   padding: const EdgeInsets.all(8),
+          //   color: Colors.grey,
+          //   width: Get.width,
+          //   alignment: Alignment.centerRight,
+          //   child: Row(
+          //     children: const [
+          //       Icon(Icons.not_interested_rounded),
+          //       SizedBox(width: 8,),
+          //       Text("Offline"),
+          //     ],
+          //   ),
+          // ),
           Expanded(child: child),
 
         ],

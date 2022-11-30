@@ -9,6 +9,7 @@ dependencies:
   cupertino_icons: ^1.0.5
   get: 4.6.5
   logger: ^1.1.0
+  connectivity_plus: ^3.0.2
 
   flutter: 
     sdk: flutter
