@@ -1,6 +1,6 @@
 class Environments {
   static const String PRODUCTION = 'prod';
-  static const String QAS = 'QAS';
+  static const String QAS = 'qas';
   static const String DEV = 'dev';
   static const String LOCAL = 'local';
 }

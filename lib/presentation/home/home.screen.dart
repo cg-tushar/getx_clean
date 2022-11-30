@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_clean/app/core/base_widgets/base_widget.dart';
 import '../../domain/core/state_handler/state_builder_widget.dart';
 import '../../domain/core/state_handler/state_controller.dart';
 import '../../infrastructure/dal/daos/news_model.dart';
@@ -9,12 +10,9 @@ class HomeScreen extends GetView<HomeController> {
   const HomeScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('HomeScreen'),
-        centerTitle: true,
-      ),
-      body: Column(
+    return BaseWidget(
+      title: "HomePage",
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
