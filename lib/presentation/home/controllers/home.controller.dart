@@ -25,16 +25,16 @@ class HomeController extends SuperStateController {
     super.onClose();
   }
 
-  fetchData() async {
-    await networkCalls(
-      _fetchHeadlineUseCase.execute(),
+  fetchData() {
+    networkCalls(
+      _fetchHeadlineUseCase.execute,
       call: NetworkCall.three,
     );
   }
 
   call1() async {
     await networkCalls(
-      _fetchHeadlineUseCase.execute(),
+      _fetchHeadlineUseCase.execute,
       call: NetworkCall.one,
     );
   }

@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 class Environments {
   static const String PRODUCTION = 'prod';
   static const String QAS = 'qas';
@@ -6,7 +8,7 @@ class Environments {
 }
 
 class ConfigEnvironments {
-  static const String _currentEnvironments = Environments.LOCAL;
+  static const String _currentEnvironments = Environments.QAS;
   static final List<Map<String, String>> _availableEnvironments = [
     {
       'env': Environments.LOCAL,
@@ -14,15 +16,15 @@ class ConfigEnvironments {
     },
     {
       'env': Environments.DEV,
-      'url': '',
+      'url': 'https://newsapi.org/v2',
     },
     {
       'env': Environments.QAS,
-      'url': '',
+      'url': 'https://newsapi.org/v2',
     },
     {
       'env': Environments.PRODUCTION,
-      'url': '',
+      'url': 'https://newsapi.org/v2',
     },
   ];
 

@@ -1,3 +1,3 @@
-class APIEndpoint {
-  static String get newsapi => "https://newsapi.org/v2";
-}
+// class APIEndpoint {
+//   static String get newsapi => "https://newsapi.org/v2";
+// }

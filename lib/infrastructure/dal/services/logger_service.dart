@@ -1,8 +1,6 @@
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
-import '../../../domain/core/network/base/api_request_representable.dart';
-
 class GetLogService {
   static final instance = GetLogService._();
   GetLogService._();

@@ -36,14 +36,19 @@ class HomeScreen extends GetView<HomeController> {
                   controller.removeCache();
                 },
                 child: const Text("Remove all cache"),
-              )
+              ),
+              // ElevatedButton(
+              //   onPressed: () {
+              //     Get.toNamed(Routes.LOGIN);
+              //   },
+              //   child: const Text(" another page "),
+              // )
             ],
           ),
           Expanded(
             child: SuperStateBuilder<HomeController>(
               child: (p0) {
                 final data = p0?.data as NewsModel?;
-                print(data);
                 return ListView.builder(
                   itemCount: data?.articles?.length,
                   itemBuilder: (context, index) {

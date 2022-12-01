@@ -1,7 +1,7 @@
 import 'package:get/get_connect/http/src/response/response.dart';
+import 'package:getx_clean/config.dart';
 import 'package:getx_clean/domain/core/network/base/api_provider.dart';
 import '../../../domain/core/network/base/api_request_representable.dart';
-import '../../../domain/core/network/endpoints/api_endpoint.dart';
 
 enum ArticleType { postData, fetchNews }
 
@@ -11,11 +11,12 @@ class ArticleAPI implements APIRequestRepresentable {
 
   ArticleAPI._({this.userId, required this.type});
 
-  ArticleAPI.postData(int userId) : this._(type: ArticleType.postData, userId: userId);
+  ArticleAPI.postData(int userId)
+      : this._(type: ArticleType.postData, userId: userId);
   ArticleAPI.fetchNews() : this._(type: ArticleType.fetchNews);
 
   @override
-  String get endpoint => APIEndpoint.newsapi;
+  String get endpoint => ConfigEnvironments.getEnvironments()['url'] ?? "";
 
   @override
   HTTPMethod get method {
@@ -28,7 +29,8 @@ class ArticleAPI implements APIRequestRepresentable {
   }
 
   @override
-  Map<String, String> get headers => {"X-Api-Key": "d809d6a547734a67af23365ce5bc8c02"};
+  Map<String, String> get headers =>
+      {"X-Api-Key": "d809d6a547734a67af23365ce5bc8c02"};
 
   @override
   Map<String, String>? get query {
@@ -36,7 +38,11 @@ class ArticleAPI implements APIRequestRepresentable {
       case ArticleType.postData:
         return {"userId": userId.toString()};
       case ArticleType.fetchNews:
-        return {"country": "us", "category": "business", "apiKey": "d809d6a547734a67af23365ce5bc8c02"};
+        return {
+          "country": "us",
+          "category": "business",
+          "apiKey": "d809d6a547734a67af23365ce5bc8c02"
+        };
     }
   }
 
