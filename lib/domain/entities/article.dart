@@ -1,3 +1,4 @@
+// * article base
 class ArticleBase {
   String? author;
   String? title;

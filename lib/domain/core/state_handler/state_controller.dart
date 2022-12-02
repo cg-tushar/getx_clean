@@ -5,12 +5,16 @@ import 'package:getx_clean/domain/core/network/connectivity/internet_connectivit
 import '../../../app/core/base_widgets/base_snackbar_widget.dart';
 import '../network/base/response_handler.dart';
 
+
+// ? Super Controller to handle states and errors with connectivity checks
 class SuperStateController<T> extends GetxController
     with StateMixin<NetworkResponse> {
   dynamic controller;
   Rxn<NetworkCall> currentCall = Rxn();
   RxBool isOnline = RxBool(true);
   final connection = Get.find<ConnectivityCheck>();
+
+  // * this Map helps us to call multiple API at same point
   RxMap stateData = RxMap({
     NetworkCall.one: null,
     NetworkCall.two: null,
@@ -19,7 +23,9 @@ class SuperStateController<T> extends GetxController
   });
   Rxn<NetworkState> currentState = Rxn(NetworkState.idle);
   RxList errorLog = RxList();
-  late StreamSubscription subscription;
+
+
+  late StreamSubscription subscription;   // * Stream to listen data
   networkCalls(Stream<NetworkResponse> Function() method,
       {NetworkCall? call}) async {
     controller.currentCall.value = call ?? NetworkCall.one;

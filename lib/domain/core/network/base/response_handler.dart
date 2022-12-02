@@ -3,6 +3,8 @@ import 'package:get/instance_manager.dart';
 
 import '../../model/base_model.dart';
 
+// * Handles the network response
+
 class NetworkResponseHandler<T extends BaseModel> {
   response(get_connect.Response response) {
     switch (response.statusCode) {

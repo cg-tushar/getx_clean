@@ -15,6 +15,7 @@ class APIProvider {
   static final _singleton = APIProvider();
   static APIProvider get instance => _singleton;
 
+  // * APIRequestRepresentable: type of request we are performing with all data like url,endpoints,query and more
   Stream<Response> request(APIRequestRepresentable request) async* {
     try {
       if (request.cache) {

@@ -17,6 +17,8 @@ extension HTTPMethodString on HTTPMethod {
   }
 }
 
+// * Type of Request we are performing
+
 abstract class APIRequestRepresentable {
   String get url;
   bool get cache;

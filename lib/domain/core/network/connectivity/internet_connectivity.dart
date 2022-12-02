@@ -9,6 +9,8 @@ class ConnectivityCheck {
   final connectionStream = StreamController<bool>.broadcast();
   get isConnected => checkConnection();
 
+  // * checking internet connection
+
   initConnectionCheck() {
     _connectivity.onConnectivityChanged.listen((event) {
       connectionStream.add((event == ConnectivityResult.mobile ||

@@ -4,6 +4,8 @@ import 'package:getx_clean/domain/core/state_handler/state_controller.dart';
 
 import '../network/base/response_handler.dart';
 
+// ?  SuperWidget to call api and works as stream to update data from local to network
+
 class SuperStateBuilder<T extends SuperStateController> extends StatelessWidget {
   final Widget Function(NetworkResponse?) child;
   final Widget? errorWidget;

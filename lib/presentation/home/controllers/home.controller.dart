@@ -25,10 +25,12 @@ class HomeController extends SuperStateController {
     super.onClose();
   }
 
+  // @networkCalls
+
   fetchData() {
     networkCalls(
       _fetchHeadlineUseCase.execute,
-      call: NetworkCall.three,
+      call: NetworkCall.three, // * No of api call at this Instance
     );
   }
 

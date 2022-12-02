@@ -10,8 +10,7 @@ import 'infrastructure/navigation/routes.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   DependencyCreator.init();
-  LocalStorage.instance.initialize();
-  ConnectivityCheck.instance.initConnectionCheck();
+
   var initialRoute = await Routes.initialRoute;
   runApp(Main(initialRoute));
 }

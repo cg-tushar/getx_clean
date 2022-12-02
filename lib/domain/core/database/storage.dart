@@ -1,5 +1,7 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
+// * Local Storage class
+
 class StorageItem {
   StorageItem(this.key, this.value);
 
