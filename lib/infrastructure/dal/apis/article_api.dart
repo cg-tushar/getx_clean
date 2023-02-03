@@ -16,7 +16,7 @@ class ArticleAPI implements APIRequestRepresentable {
   ArticleAPI.everything() : this._(type: ArticleType.everything);
 
   @override
-  String get endpoint => ConfigEnvironments.getEnvironments()['url'] ?? "";
+  String get endpoint => EnvironmentConfig.getUrl();
 
   @override
   HTTPMethod get method {

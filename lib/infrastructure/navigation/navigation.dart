@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 import '../../config.dart';
@@ -12,7 +11,7 @@ class EnvironmentsBadge extends StatelessWidget {
   const EnvironmentsBadge({super.key, required this.child});
   @override
   Widget build(BuildContext context) {
-    var env = ConfigEnvironments.getEnvironments()['env'];
+    var env = EnvironmentConfig.getUrl();
     return env != Environments.PRODUCTION
         ? Banner(
             location: BannerLocation.topEnd,

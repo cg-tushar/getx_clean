@@ -22,7 +22,7 @@ class SuperStateBuilder<T extends SuperStateController<T, P>, P> extends GetView
         case NetworkState.success:
           return child(controller.state.value);
         default:
-          return Text("Default case ");
+          return const Text("Default case ");
       }
     });
   }
