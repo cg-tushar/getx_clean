@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 // * Local Storage class
@@ -48,14 +50,12 @@ class LocalStorage implements BaseLocalStorage {
 
   @override
   Future<void> writeSecureData(StorageItem newItem) async {
-    await _secureStorage.write(
-        key: newItem.key, value: newItem.value, aOptions: _getAndroidOptions());
+    await _secureStorage.write(key: newItem.key, value: newItem.value, aOptions: _getAndroidOptions());
   }
 
   @override
   Future<String?> readSecureData(String key) async {
-    String? readData =
-        await _secureStorage.read(key: key, aOptions: _getAndroidOptions());
+    String? readData = await _secureStorage.read(key: key, aOptions: _getAndroidOptions());
     return readData;
   }
 
@@ -66,22 +66,20 @@ class LocalStorage implements BaseLocalStorage {
 
   @override
   Future<bool> containsKeyInSecureData(String key) async {
-    bool containsKey = await _secureStorage.containsKey(
-        key: key, aOptions: _getAndroidOptions());
+    bool containsKey = await _secureStorage.containsKey(key: key, aOptions: _getAndroidOptions());
     return containsKey;
   }
 
   @override
   Future<List<StorageItem>> readAllSecureData() async {
-    Map<String, String> allData =
-        await _secureStorage.readAll(aOptions: _getAndroidOptions());
-    List<StorageItem> list =
-        allData.entries.map((e) => StorageItem(e.key, e.value)).toList();
+    Map<String, String> allData = await _secureStorage.readAll(aOptions: _getAndroidOptions());
+    List<StorageItem> list = allData.entries.map((e) => StorageItem(e.key, e.value)).toList();
     return list;
   }
 
   @override
   Future<void> deleteAllSecureData() async {
     await _secureStorage.deleteAll(aOptions: _getAndroidOptions());
+    log("Local Data Deleted Successfully");
   }
 }

@@ -1,19 +1,17 @@
-
+import 'package:getx_clean/domain/core/model/base_model.dart';
 import 'package:getx_clean/infrastructure/dal/apis/article_api.dart';
 
 import '../../../domain/core/network/base/response_handler.dart';
 import '../../../domain/repositories/article_repository.dart';
-import '../daos/news_model.dart';
 
-class ArticleRepositoryIml extends ArticleRepository {
+class ArticleRepositoryIml<T extends BaseModel> extends ArticleRepository<T> {
   @override
-  Stream<NetworkResponse> fetchHeadline() {
-    return ArticleAPI.fetchNews().request().map(
-        (event) => NetworkResponseHandler<NewsModel>().response(event) as NetworkResponse);
+  Stream<NetworkResponse<T>> fetchHeadline() {
+    return ArticleAPI.fetchNews().request().map((event) => NetworkResponseHandler<T>().response(event));
   }
 
   @override
-  Stream<NetworkResponse> postData(int userId) {
-    throw UnimplementedError();
+  Stream<NetworkResponse<T>> everything() {
+    return ArticleAPI.everything().request().map((event) => NetworkResponseHandler<T>().response(event));
   }
 }

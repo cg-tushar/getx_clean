@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:get/get_connect/connect.dart';
+
 import '../../../../infrastructure/dal/services/logger_service.dart';
 import '../../database/get_key.dart';
 import '../../database/storage.dart';
@@ -20,12 +22,10 @@ class APIProvider {
     try {
       if (request.cache) {
         // get cache data
-        final localItem = await LocalStorage.instance
-            .readSecureData(getKey(request.path, request.query));
+        final localItem = await LocalStorage.instance.readSecureData(getKey(request.path, request.query));
         if (localItem != null) {
           // return the cache data
-          GetLogService.instance.logAPILocalData(
-              data: localItem, key: getKey(request.path, request.query));
+          GetLogService.instance.logAPILocalData(data: localItem, key: getKey(request.path, request.query));
           yield Response(body: jsonDecode(localItem), statusCode: 200);
         }
       }
@@ -40,10 +40,9 @@ class APIProvider {
       // >>>[ check the response is ok and cache is enabled ]
       if (response.isOk) {
         // >>>[ updating local storage with new data]
-        LocalStorage.instance.writeSecureData(StorageItem(
-            getKey(request.path, request.query), jsonEncode(response.body)));
+        LocalStorage.instance.writeSecureData(StorageItem(getKey(request.path, request.query), jsonEncode(response.body)));
+        yield response;
       }
-      yield response;
     } on TimeoutException catch (_) {
       GetLogService.instance.logger.e(_);
 

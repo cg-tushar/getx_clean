@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'domain/core/database/storage.dart';
-import 'domain/core/network/connectivity/internet_connectivity.dart';
-import 'infrastructure/navigation/dependency/dependency.dart';
+import 'infrastructure/navigation/dependencies/dependency.dart';
 import 'infrastructure/navigation/navigation.dart';
 import 'infrastructure/navigation/routes.dart';
 

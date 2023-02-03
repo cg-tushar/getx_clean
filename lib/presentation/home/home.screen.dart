@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_clean/app/core/base_widgets/base_widget.dart';
-import '../../domain/core/state_handler/state_builder_widget.dart';
-import '../../domain/core/state_handler/state_controller.dart';
-import '../../infrastructure/dal/daos/news_model.dart';
-import 'controllers/home.controller.dart';
+import 'package:getx_clean/domain/core/state_handler/state_controller.dart';
+import 'package:getx_clean/presentation/home/controllers/article.controller.dart';
+import 'package:getx_clean/presentation/home/controllers/everything.controller.dart';
 
-class HomeScreen extends GetView<HomeController> {
+import '../../domain/core/state_handler/state_builder_widget.dart';
+import '../../infrastructure/dal/daos/news_model.dart';
+
+class HomeScreen extends GetView<ArticleController> {
   const HomeScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -17,40 +19,15 @@ class HomeScreen extends GetView<HomeController> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const SizedBox(width: double.infinity),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              SuperStateBuilder<HomeController>(
-                child: (p0) {
-                  return ElevatedButton(
-                    onPressed: () {
-                      controller.call1();
-                    },
-                    child: const Text("Another api call"),
-                  );
-                },
-                call: NetworkCall.one,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  controller.removeCache();
-                },
-                child: const Text("Remove all cache"),
-              ),
-              // ElevatedButton(
-              //   onPressed: () {
-              //     Get.toNamed(Routes.LOGIN);
-              //   },
-              //   child: const Text(" another page "),
-              // )
-            ],
+          ElevatedButton(
+            onPressed: controller.clearLocalStorage,
+            child: const Text("Remove all cache"),
           ),
           Expanded(
-            child: SuperStateBuilder<HomeController>(
+            child: SuperStateBuilder<ArticleController, NewsModel>(
               child: (p0) {
-                final data = p0?.data as NewsModel?;
                 return ListView.builder(
-                  itemCount: data?.articles?.length,
+                  itemCount: p0?.data?.articles?.length,
                   itemBuilder: (context, index) {
                     return Container(
                       decoration: BoxDecoration(
@@ -62,20 +39,56 @@ class HomeScreen extends GetView<HomeController> {
                       child: Column(
                         children: [
                           Text(
-                            data?.articles?[index].title ?? "",
+                            p0?.data?.articles?[index].title ?? "",
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
                             ),
                           ),
+                          Chip(label: Text(p0?.data?.articles?[index].author ?? '')),
                           const Divider(),
-                          Text(data?.articles?[index].content ?? ""),
+                          Text(p0?.data?.articles?[index].content ?? ""),
                         ],
                       ),
                     );
                   },
                 );
               },
-              call: NetworkCall.three,
+            ),
+          ),
+          Divider(
+            color: Colors.red,
+            thickness: 10,
+          ),
+          Expanded(
+            child: SuperStateBuilder<EverythingController, NewsModel>(
+              child: (p0) {
+                return ListView.builder(
+                  itemCount: p0?.data?.articles?.length,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      decoration: BoxDecoration(
+                        color: Colors.green[100]!.withOpacity(0.4),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      margin: const EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(20),
+                      child: Column(
+                        children: [
+                          Text(
+                            p0?.data?.articles?[index].title ?? "",
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Chip(label: Text(p0?.data?.articles?[index].author ?? '')),
+                          const Divider(),
+                          Text(p0?.data?.articles?[index].content ?? ""),
+                        ],
+                      ),
+                    );
+                  },
+                );
+              },
             ),
           ),
         ],

@@ -1,13 +1,14 @@
 import 'package:get/get.dart';
 import 'package:getx_clean/domain/core/state_handler/state_controller.dart';
-import '../../../domain/core/database/storage.dart';
-import '../../../domain/usecases/fetch_headline_use_case.dart';
+import 'package:getx_clean/infrastructure/dal/daos/news_model.dart';
 
-class HomeController extends SuperStateController {
-  HomeController(this._fetchHeadlineUseCase) : super() {
-    controller = this;
-  }
-  final FetchHeadlineUseCase _fetchHeadlineUseCase;
+import '../../../domain/core/database/storage.dart';
+import '../../../domain/usecases/headline.usecase.dart';
+
+class HomeController extends SuperStateController<HomeController, NewsModel> {
+  HomeController(this._fetchHeadlineUseCase);
+
+  final FetchHeadlineUseCase<NewsModel> _fetchHeadlineUseCase;
 
   @override
   void onInit() {
@@ -30,16 +31,15 @@ class HomeController extends SuperStateController {
   fetchData() {
     networkCalls(
       _fetchHeadlineUseCase.execute,
-      call: NetworkCall.three, // * No of api call at this Instance
     );
   }
 
-  call1() async {
-    await networkCalls(
-      _fetchHeadlineUseCase.execute,
-      call: NetworkCall.one,
-    );
-  }
+  // call1() async {
+  //   await networkCalls(
+  //     _fetchHeadlineUseCase.execute,
+  //     call: NetworkCall.one,
+  //   );
+  // }
 
   removeCache() {
     Get.find<LocalStorage>().deleteAllSecureData();
